@@ -39,7 +39,7 @@ data$Date <- as.Date(data$Date , "%d/%m/%Y")
 data$Time <- paste(data$Date, data$Time, sep=" ")
 data$Time <- strptime(data$Time, "%Y-%m-%d %H:%M:%S")
 
-dataset <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
+data <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
 
 #@PLOT DATA AND WRITE
 #####################
@@ -49,11 +49,62 @@ png(
 	height = 480
 )
 
-hist(
-	dataset$Global_active_power,
-	main = "Global Active power",
-	col = "red",
-	xlab = "Global Active Power (kilowatts)"
-)
+par(mfcol = c(2,2))
+
+with(data,{
+
+	#upper left
+	plot(
+		Time,
+		Global_active_power,
+		xlab="",
+		ylab="Global Active Power",
+		type="l"
+	)
+
+	#lower left
+	plot(
+			Time,
+			Sub_metering_1,
+			xlab="",
+			type="l",
+			ylab="Energy sub metering"
+		)
+		lines(
+			Time,
+			Sub_metering_2,
+			col="red"
+		)
+		lines(
+			Time,
+			Sub_metering_3,
+			col="blue"
+		)
+
+		legend(
+			"topright",
+			bty="n",
+			col = c("black","red","blue"),
+			lty = c(1,1,1),
+			legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3")
+		)
+
+  #upper right
+	plot(
+		Time,
+		Voltage,
+		xlab="datetime",
+		ylab="Voltage",
+		type="l"
+	)
+
+  #lower right
+	plot(
+		Time,
+		Global_reactive_power,
+		xlab="datetime",
+		type="l"
+	)
+})
 
 dev.off()
