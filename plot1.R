@@ -36,7 +36,7 @@ data <- read.table(
 #@SUBSET DATA
 #############
 data$Date <- as.Date(data$Date , "%d/%m/%Y")
-data$Time <- paste(data$Date, data$Time, sep=" ")
+data$Time <- paste(data$Date, data$Time, sep = " ")
 data$Time <- strptime(data$Time, "%Y-%m-%d %H:%M:%S")
 
 data <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")

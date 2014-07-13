@@ -36,7 +36,7 @@ data <- read.table(
 #@SUBSET DATA
 #############
 data$Date <- as.Date(data$Date , "%d/%m/%Y")
-data$Time <- paste(data$Date, data$Time, sep=" ")
+data$Time <- paste(data$Date, data$Time, sep = " ")
 data$Time <- strptime(data$Time, "%Y-%m-%d %H:%M:%S")
 
 data <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
@@ -66,44 +66,44 @@ with(data,{
 	plot(
 			Time,
 			Sub_metering_1,
-			xlab="",
-			type="l",
-			ylab="Energy sub metering"
+			xlab = "",
+			ylab = "Energy sub metering",
+			type = "l"
 		)
 		lines(
 			Time,
 			Sub_metering_2,
-			col="red"
+			col = "red"
 		)
 		lines(
 			Time,
 			Sub_metering_3,
-			col="blue"
+			col = "blue"
 		)
 
 		legend(
 			"topright",
-			bty="n",
+			bty = "n",
 			col = c("black","red","blue"),
 			lty = c(1,1,1),
-			legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3")
+			legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3")
 		)
 
-  #upper right
+	#upper right
 	plot(
 		Time,
 		Voltage,
-		xlab="datetime",
-		ylab="Voltage",
-		type="l"
+		xlab = "datetime",
+		ylab = "Voltage",
+		type = "l"
 	)
 
-  #lower right
+	#lower right
 	plot(
 		Time,
 		Global_reactive_power,
-		xlab="datetime",
-		type="l"
+		xlab = "datetime",
+		type = "l"
 	)
 })
 
