@@ -13,7 +13,6 @@
 
 #@DOWNLOAD FILE
 ###############
-
 if (!file.exists("./household_power_consumption.txt")){
 	download.file(
 		"https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip",
@@ -44,7 +43,6 @@ dataset <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
 
 #@PLOT DATA AND WRITE
 #####################
-
 png(
 	"plot4.png",
 	width = 480,
