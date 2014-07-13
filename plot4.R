@@ -17,8 +17,8 @@
 if (!file.exists("./household_power_consumption.txt")){
 	download.file(
 		"https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip",
-		destfile="./household_power_consumption.zip",
-		method="curl"
+		destfile = "./household_power_consumption.zip",
+		method = "curl"
 	)
 
 	unzip("./household_power_consumption.zip")
@@ -28,21 +28,34 @@ if (!file.exists("./household_power_consumption.txt")){
 #############
 data <- read.table(
 	"./household_power_consumption.txt",
-	sep=";",
-	header=TRUE,
-	stringsAsFactors=FALSE,
-	na.strings="?"
-	)
+	sep = ";",
+	header = TRUE,
+	stringsAsFactors = FALSE,
+	na.strings = "?"
+)
 
 #@SUBSET DATA
 #############
-dataset <- as.Date(data$Date,"%d/%m/%Y")
-dataset <- cbind(dataset, data)
-colnames(dataset)[1] <- "Date_obj"
-dataset <- subset(dataset, Date_obj>="2007-02-01" & Date_obj<="2007-02-02")
+data$Date <- as.Date(data$Date , "%d/%m/%Y")
+data$Time <- paste(data$Date, data$Time, sep=" ")
+data$Time <- strptime(data$Time, "%Y-%m-%d %H:%M:%S")
 
-#@PLOT DATA
-#############
+dataset <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
 
-#@WRITE PNG
-#############
+#@PLOT DATA AND WRITE
+#####################
+
+png(
+	"plot4.png",
+	width = 480,
+	height = 480
+)
+
+hist(
+	dataset$Global_active_power,
+	main = "Global Active power",
+	col = "red",
+	xlab = "Global Active Power (kilowatts)"
+)
+
+dev.off()
