@@ -40,7 +40,7 @@ data$Date <- as.Date(data$Date , "%d/%m/%Y")
 data$Time <- paste(data$Date, data$Time, sep=" ")
 data$Time <- strptime(data$Time, "%Y-%m-%d %H:%M:%S")
 
-dataset <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
+data <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
 
 #@PLOT DATA AND WRITE
 #####################
@@ -51,11 +51,12 @@ png(
 	height = 480
 )
 
-hist(
-	dataset$Global_active_power,
-	main = "Global Active power",
-	col = "red",
-	xlab = "Global Active Power (kilowatts)"
+plot(
+	data$Time,
+	data$Global_active_power,
+	xlab="",
+	ylab="Global Active Power (kilowatts)",
+	type="l"
 )
 
 dev.off()
