@@ -52,9 +52,9 @@ png(
 plot(
 	data$Time,
 	data$Global_active_power,
-	xlab="",
-	ylab="Global Active Power (kilowatts)",
-	type="l"
+	xlab = "",
+	ylab = "Global Active Power (kilowatts)",
+	type = "l"
 )
 
 dev.off()
