@@ -40,7 +40,7 @@ data$Date <- as.Date(data$Date , "%d/%m/%Y")
 data$Time <- paste(data$Date, data$Time, sep=" ")
 data$Time <- strptime(data$Time, "%Y-%m-%d %H:%M:%S")
 
-dataset <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
+data <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
 
 #@PLOT DATA AND WRITE
 #####################
@@ -52,7 +52,7 @@ png(
 )
 
 hist(
-	dataset$Global_active_power,
+	data$Global_active_power,
 	main = "Global Active power",
 	col = "red",
 	xlab = "Global Active Power (kilowatts)"
